@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Newsreader", serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+
+  --color-cream: #f4f9f8;
+  --color-sand: #e2efed;
+  --color-ink: #0f2a33;
+  --color-forest: #0b4f5c;
+  --color-forest-dark: #06323b;
+  --color-moss: #2a9d8f;
+  --color-moss-light: #a9ddd5;
+  --color-clay: #ef6f5e;
+  --color-line: #d3e3e0;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--color-forest);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 3px;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-float { animation: float-y 6s ease-in-out infinite; }
+.animate-pulse-ring { animation: pulse-ring 2.4s ease-out infinite; }
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-forest);
+}
+
+.text-outline-light {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(244, 249, 248, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-float,
+  .animate-ecg,
+  .animate-pulse-ring {
+    animation: none;
+  }
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+@keyframes ecg-run {
+  from { stroke-dashoffset: 1200; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-ecg {
+  stroke-dasharray: 1200;
+  animation: ecg-run 3.2s linear infinite;
+}
